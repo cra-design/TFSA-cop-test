@@ -271,24 +271,26 @@
 }'></div>
 
 <script>
-function checkRadioFromHash() {
-  const hash = window.location.hash;
-  if (hash === "#choice1") {
-    document.querySelector('input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="Other benefit, tax, fee or amount owing"]').checked = true;
-  } else if (hash === "#choice2") {
-    document.querySelector('input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="2"]').checked = true;
-  }
-}
+$(function() {
+  // Simulate form being loaded dynamically after page load
+  setTimeout(function() {
+    // Build the form dynamically
+    const $form = $('<form></form>');
+    $form.append('<label><input type="radio" name="wb-fieldflowwb-auto-1wb-auto-18" value="Other benefit, tax, fee or amount owing"> Other benefit, tax, fee or amount owing</label>');
+    $form.append('<label><input type="radio" name="wb-fieldflowwb-auto-1wb-auto-18" value="2"> Option 2</label>');
+    $('#pymntsfrm').append($form);
 
-// Run when the page loads
-checkRadioFromHash();
-
-// Also run if the hash changes while on the page
-window.addEventListener("hashchange", checkRadioFromHash);
+    // Pre-select radio based on query parameter
+    const params = new URLSearchParams(window.location.search);
+    const choice = params.get('wb-fieldflowwb-auto-1wb-auto-18');
+    if (choice) {
+      $(`input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${wb-fieldflowwb-auto-1wb-auto-18}"]`).prop('checked', true);
+    }
+  }, 300); // simulate delay (e.g., AJAX)
+});
 </script>
-
-
 	
+
     <form id="pymntsfrm" class="checkbox-lg gc-font-2019">
 	<div class="wb-fieldflow" data-wb-fieldflow="{&quot;noForm&quot;: true, &quot;isoptional&quot;: true, &quot;renderas&quot;: &quot;radio&quot;, &quot;gcChckbxrdio&quot;:true, &quot;reset&quot;: [{ &quot;action&quot;: &quot;addClass&quot;, &quot;source&quot;:&quot;#ff-results, .alert-hide-reset&quot;, &quot;class&quot;: &quot;hidden&quot;}, { &quot;action&quot;: &quot;removeClass&quot;, &quot;source&quot;:&quot;.ff-answers&quot;, &quot;class&quot;: &quot;hidden&quot;}]}">
 		<p>What type of payment are you making?</p>
