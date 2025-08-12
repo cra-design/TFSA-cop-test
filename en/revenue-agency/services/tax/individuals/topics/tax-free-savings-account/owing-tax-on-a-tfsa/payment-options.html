@@ -274,21 +274,7 @@ $(':input:radio:eq(0)').attr('checked', 'checked');
 	"tfsa=t1": {&quot;action&quot;:&quot;append&quot;,&quot;srctype&quot;:&quot;wb-fieldflow&quot;,&quot;source&quot;:&quot;#wb-auto-16&quot;}
 }'></div>
 
-<script>
-  // Read the URL parameter
-  const params = new URLSearchParams(window.location.search);
-  const choice = params.get('choice'); // e.g., ?choice=Other%20benefit,%20tax,%20fee%20or%20amount%20owing
 
-  if (choice) {
-    // Select the matching radio
-    const radio = document.querySelector(
-      `input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${choice}"]`
-    );
-    if (radio) {
-      radio.checked = true;
-    }
-  }
-</script>
 	
 
     <form id="pymntsfrm" class="checkbox-lg gc-font-2019">
@@ -1003,7 +989,21 @@ $(':input:radio:eq(0)').attr('checked', 'checked');
 
     <script type="text/javascript">_satellite.pageBottom();</script>
 
+<script>
+  // Read the URL parameter
+  const params = new URLSearchParams(window.location.search);
+  const choice = params.get('choice'); // e.g., ?choice=Other%20benefit,%20tax,%20fee%20or%20amount%20owing
 
+  if (choice) {
+    // Select the matching radio
+    const radio = document.querySelector(
+      `input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${choice}"]`
+    );
+    if (radio) {
+      radio.checked = true;
+    }
+  }
+</script>
 
 
 
