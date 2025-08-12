@@ -271,23 +271,16 @@
 }'></div>
 
 <script>
-$(function() {
-  // Simulate form being loaded dynamically after page load
-  setTimeout(function() {
-    // Build the form dynamically
-    const $form = $('<form></form>');
-    $form.append('<label><input type="radio" name="wb-fieldflowwb-auto-1wb-auto-18" value="Other benefit, tax, fee or amount owing"> Other benefit, tax, fee or amount owing</label>');
-    $form.append('<label><input type="radio" name="wb-fieldflowwb-auto-1wb-auto-18" value="2"> Option 2</label>');
-    $('#pymntsfrm').append($form);
+  // Get URL parameters
+  const params = new URLSearchParams(window.location.search);
+  const choice = params.get("wb-fieldflowwb-auto-1wb-auto-18");
 
-    // Pre-select radio based on query parameter
-    const params = new URLSearchParams(window.location.search);
-    const choice = params.get('wb-fieldflowwb-auto-1wb-auto-18');
-    if (choice) {
-      $(`input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${wb-fieldflowwb-auto-1wb-auto-18}"]`).prop('checked', true);
+  if (choice) {
+    const radio = document.querySelector(`input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${choice}"]`);
+    if (radio) {
+      radio.checked = true;
     }
-  }, 300); // simulate delay (e.g., AJAX)
-});
+  }
 </script>
 	
 
