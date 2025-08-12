@@ -987,26 +987,37 @@ $(':input:radio:eq(0)').attr('checked', 'checked');
 
 
 
-    <script type="text/javascript">_satellite.pageBottom();</script>
+<script type="text/javascript">_satellite.pageBottom();</script>
 
 <script>
-  // Read the URL parameter
+(function() {
+  // Get URL parameter value (decoded so spaces/commas work)
   const params = new URLSearchParams(window.location.search);
-  const choice = params.get('choice'); // e.g., ?choice=Other%20benefit,%20tax,%20fee%20or%20amount%20owing
+  const choice = params.get('choice'); 
+  if (!choice) return; // nothing to pre-select
 
-  if (choice) {
-    // Select the matching radio
+  // Function to try selecting the radio
+  function trySelect() {
     const radio = document.querySelector(
       `input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${choice}"]`
     );
     if (radio) {
       radio.checked = true;
+      observer.disconnect(); // stop watching once found
     }
   }
+
+  // First try in case the form already exists
+  trySelect();
+
+  // If not found yet, watch for DOM changes until it appears
+  const observer = new MutationObserver(trySelect);
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
 </script>
-
-
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://www.canada.ca/etc/designs/canada/wet-boew/js/ep-pp.min.js"></script>
