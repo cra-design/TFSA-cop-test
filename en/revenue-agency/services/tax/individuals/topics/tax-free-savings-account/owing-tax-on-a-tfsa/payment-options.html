@@ -271,12 +271,20 @@
 }'></div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const choice = params.get('wb-fieldflowwb-auto-1wb-auto-18');
-if (choice) {
-  const radio = document.querySelector(`input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${Other benefit, tax, fee or amount owing}"]`);
-  if (radio) radio.checked = true;
+function checkRadioFromHash() {
+  const hash = window.location.hash;
+  if (hash === "#choice1") {
+    document.querySelector('input[name="choice"][value="Other benefit, tax, fee or amount owing"]').checked = true;
+  } else if (hash === "#choice2") {
+    document.querySelector('input[name="choice"][value="2"]').checked = true;
+  }
 }
+
+// Run when the page loads
+checkRadioFromHash();
+
+// Also run if the hash changes while on the page
+window.addEventListener("hashchange", checkRadioFromHash);
 </script>
 
 
