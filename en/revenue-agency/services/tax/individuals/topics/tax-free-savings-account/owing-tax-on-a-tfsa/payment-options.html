@@ -74,7 +74,14 @@
 
 
 
+<script>
+// make sure you run this on DOM ready like in $.ready() in jQuery or in a script just before closing the body tag
 
+if(window.location.hash === 'test') {
+  // add the selected attribute to the <option> you want
+	$(':input:radio:eq(0)').attr('checked', 'checked');
+}
+</script>
 
 
 
@@ -270,18 +277,7 @@
 	"tfsa=t1": {&quot;action&quot;:&quot;append&quot;,&quot;srctype&quot;:&quot;wb-fieldflow&quot;,&quot;source&quot;:&quot;#wb-auto-16&quot;}
 }'></div>
 
-<script>
-  // Get URL parameters
-  const params = new URLSearchParams(window.location.search);
-  const wb-fieldflowwb-auto-1wb-auto-18 = params.get("wb-fieldflowwb-auto-1wb-auto-18");
 
-  if (wb-fieldflowwb-auto-1wb-auto-18) {
-    const radio = document.querySelector(`input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${wb-fieldflowwb-auto-1wb-auto-18}"]`);
-    if (radio) {
-      radio.checked = true;
-    }
-  }
-</script>
 	
 
     <form id="pymntsfrm" class="checkbox-lg gc-font-2019">
