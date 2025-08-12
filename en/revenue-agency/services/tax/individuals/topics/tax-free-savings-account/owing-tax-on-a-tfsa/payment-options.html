@@ -991,26 +991,22 @@ $(':input:radio:eq(0)').attr('checked', 'checked');
 
 <script>
 (function() {
-  // Get URL parameter value (decoded so spaces/commas work)
   const params = new URLSearchParams(window.location.search);
   const choice = params.get('choice'); 
-  if (!choice) return; // nothing to pre-select
+  if (!choice) return;
 
-  // Function to try selecting the radio
   function trySelect() {
     const radio = document.querySelector(
       `input[name="wb-fieldflowwb-auto-1wb-auto-18"][value="${choice}"]`
     );
     if (radio) {
-      radio.checked = true;
-      observer.disconnect(); // stop watching once found
+      radio.click(); // <-- This triggers click + change events
+      observer.disconnect();
     }
   }
 
-  // First try in case the form already exists
-  trySelect();
+  trySelect(); // Try immediately
 
-  // If not found yet, watch for DOM changes until it appears
   const observer = new MutationObserver(trySelect);
   observer.observe(document.body, {
     childList: true,
